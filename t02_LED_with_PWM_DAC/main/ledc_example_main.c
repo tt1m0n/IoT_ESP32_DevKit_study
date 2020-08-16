@@ -45,18 +45,23 @@ void app_main()
      *         will be the same
      */
     ledc_channel_config_t ledc_channel[LEDC_TEST_CH_NUM] = {
-        {.channel = LEDC_CHANNEL_0,
-         .duty = 0,
-         .gpio_num = LED1,
-         .speed_mode = LEDC_HIGH_SPEED_MODE,
-         .hpoint = 0,
-         .timer_sel = LEDC_TIMER_0},
-        {.channel = LEDC_CHANNEL_1,
-         .duty = 0,
-         .gpio_num = LED2,
-         .speed_mode = LEDC_HIGH_SPEED_MODE,
-         .hpoint = 0,
-         .timer_sel = LEDC_TIMER_0}};
+        {
+            .channel = LEDC_CHANNEL_0,
+            .duty = 0,
+            .gpio_num = LED1,
+            .speed_mode = LEDC_HIGH_SPEED_MODE,
+            .hpoint = 0,
+            .timer_sel = LEDC_TIMER_0
+        },
+        {
+            .channel = LEDC_CHANNEL_1,
+            .duty = 0,
+            .gpio_num = LED2,
+            .speed_mode = LEDC_HIGH_SPEED_MODE,
+            .hpoint = 0,
+            .timer_sel = LEDC_TIMER_0
+        }
+    };
 
     // Set LED Controller with previously prepared configuration
     for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++)
