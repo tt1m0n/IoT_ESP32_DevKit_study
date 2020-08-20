@@ -20,7 +20,10 @@ void button_checking(int button_gpio, int led_gpio, bool* led_on, bool* btn_down
 {
     if (gpio_get_level(button_gpio) == BTN_DOWN) {
         *btn_down = true;
-    } else if (gpio_get_level(button_gpio) == BTN_UP && *btn_down) { // when button in UP position AFTER down position
+    }
+	// press - down and up button
+	// first press - led on, second press - led off, etc.
+	else if (gpio_get_level(button_gpio) == BTN_UP && *btn_down) { // when button in UP position AFTER down position
         if (*led_on) {
             *led_on = false;
         } else {
@@ -58,7 +61,7 @@ void app_main()
         button_checking(SW1, LED1, &led1_on, &btn1_down);
         button_checking(SW2, LED2, &led2_on, &btn2_down);
 
-        // it seems not good solution but now i use it for avoiding watchdog errors
+        // use it for avoiding watchdog errors
         vTaskDelay(10);
     }
 }
