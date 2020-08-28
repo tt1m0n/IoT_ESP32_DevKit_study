@@ -12,6 +12,8 @@ void app_main()
     while(1) {
         printf("Temperature: %d C\n", DHT11_read().temperature);
         printf("Humidity: %d %%\n", DHT11_read().humidity);
+        printf("Status: %d \n", DHT11_read().status);
+
         vTaskDelay(1000);
     }
 }

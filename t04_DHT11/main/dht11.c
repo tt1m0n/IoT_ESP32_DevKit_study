@@ -96,8 +96,12 @@ struct dht11_reading DHT11_read() {
 
     send_start_signal();
 
-    if(check_response() == DHT11_TIMEOUT_ERROR)
-        return timeout_error();
+    if(check_response() == DHT11_TIMEOUT_ERROR) {
+        // save result to static variable and after that return
+        last_read = timeout_error();
+        return last_read;
+    }
+
 
     // Read response
     uint8_t data[BYTES_RESPONSE] = {0,0,0,0,0};
@@ -119,6 +123,8 @@ struct dht11_reading DHT11_read() {
         last_read.humidity = data[0];
         return last_read;
     } else {
-        return checksum_error();
+        // save result to static variable and after that return
+        last_read = checksum_error();
+        return last_read;
     }
 }
